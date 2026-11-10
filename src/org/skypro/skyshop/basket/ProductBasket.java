@@ -2,58 +2,34 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+
 public class ProductBasket {
     private final Product[] products = new Product[5];
+    private  int count=0;
 
     public void addProduct(Product product) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                products[i] = product;
-                return;
-            }
+        if (count < products.length) {
+            products[count] = product;
+            count++;
         }
-        System.out.println("Невозможно добавить продукт");
     }
 
-    public int getTotalPrice() {
+    public void print() {
         int total = 0;
+        int specialCount = 0;
+
         for (Product product : products) {
-            if (product != null) {
-                total += product.getPrice();
+            if (product == null) {
+                continue;
+            }
+            System.out.println(product); // сработает переопределённый toString
+            total += product.getPrice();
+            if (product.isSpecial()) {
+                specialCount++;
             }
         }
-        return total;
-    }
 
-    public void printBasket() {
-        boolean isEmpty = true;
-        int total = 0;
-        for (Product product : products) {
-            if (product != null) {
-                System.out.println(product.getName() + ": " + product.getPrice());
-                total += product.getPrice();
-                isEmpty = false;
-            }
-        }
-        if (isEmpty) {
-            System.out.println("в корзине пусто");
-        } else {
-            System.out.println("Итого: " + total);
-        }
-    }
-
-    public boolean containsProduct(String name) {
-        for (Product product : products) {
-            if (product != null && product.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void clear() {
-        for (int i = 0; i < products.length; i++) {
-            products[i] = null;
-        }
+        System.out.println("Итого: " + total);
+        System.out.println("Специальных товаров: " + specialCount);
     }
 }
