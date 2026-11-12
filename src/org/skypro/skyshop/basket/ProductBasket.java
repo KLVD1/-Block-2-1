@@ -24,6 +24,7 @@ public class ProductBasket {
         return specialCount;
     }
 
+
     public void print() {
         int total = 0;
 
