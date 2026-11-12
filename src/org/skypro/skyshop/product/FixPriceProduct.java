@@ -7,6 +7,7 @@ public class FixPriceProduct extends Product {
         super(name);
     }
 
+
     @Override
     public int getPrice() {
         return FIXED_PRICE;
