@@ -13,4 +13,12 @@ public class DiscountedProduct extends Product {
     public int getPrice() {
         return basePrice - basePrice * discount / 100;
     }
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+    @Override
+    public String toString() {
+        return getName() + ": " +getPrice() + "(скидка " + discount + " %) ";
+    }
 }
